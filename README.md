@@ -1,6 +1,6 @@
 WSITK: Whole Slide Image ToolKit - Core
 ---
-This is a minimalistic package build around [OpenSlide](https://openslide.org) and
+This is a minimalistic package built around [OpenSlide](https://openslide.org) and
 using [Shapely](https://github.com/shapely/shapely) for reading microscopy images.
 It allows reading images by specifying regions of interest in level-specific
 coordinates while applying masking, if needed. Finally, the package provides the
