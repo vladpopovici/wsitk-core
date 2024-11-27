@@ -1,0 +1,23 @@
+[project]
+name = "wsitk-core"
+dynamic = ["version"]
+authors = [
+  { name="Vlad Popovici", email="popovici@bioxlab.org" },
+]
+description = "Core functions for whole slide image access."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/vladpopovici/wsitk-core"
+Issues = "https://github.com/vladpopovici/wsitk-core/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
