@@ -7,5 +7,5 @@ coordinates while applying masking, if needed. Finally, the package provides the
 tools for coordinate conversion between levels, and working with resolution,
 magnification, and pyramid levels.
 
-The package can be installed as such, or the code (1 file) could be simply copy-paste
+The package can be installed as such, or the code (1 file) could be simply copied
 wherever needed.
