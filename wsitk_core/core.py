@@ -20,7 +20,7 @@ __all__ = ['WSI', 'ImageShape', 'Magnification']
 
 import pathlib
 import numpy as np
-from math import log, floor
+from math import log
 from typing import Optional, NewType, Tuple, Any
 import openslide as osl
 import shapely.geometry as shg
@@ -60,6 +60,10 @@ class Magnification:
         self.__mpp = mpp * self._magnif_step ** (np.arange(n_levels) - level)
 
         return
+
+    @property
+    def magnif_step(self) -> float:
+        return self._magnif_step
 
     def get_magnif_for_mpp(self, mpp: float) -> float:
         """
@@ -184,7 +188,7 @@ class WSI(object):
         path (str): full path to the image file
 
     Attributes:
-        path (str): full path to WSI file
+        _path (str): full path to WSI file
         info (dict): slide image metadata
     """
 
@@ -235,7 +239,7 @@ class WSI(object):
             self._pyramid_levels[1, lv] = slide_src.level_dimensions[lv][1]
             self._pyramid_mpp[0, lv] = s * self.info['mpp_x']
             self._pyramid_mpp[1, lv] = s * self.info['mpp_y']
-            self._downsample_factors[lv] = self.magnif_converter._magnif_step ** lv
+            self._downsample_factors[lv] = self.magnif_converter.magnif_step ** lv
 
         return
 
@@ -401,9 +405,9 @@ class WSI(object):
             pixel coordinates.
 
             Args:
-                x0, y0 (long): top left corner of the region (in pixels, at the specified
+                x0, y0 (int): top left corner of the region (in pixels, at the specified
                 level)
-                width, height (long): width and height (in pixels) of the region.
+                width, height (int): width and height (in pixels) of the region.
                 level (int): the level in the image pyramid to read from
                 as_type: type of the pixels (default numpy.uint8)
 
@@ -471,7 +475,7 @@ class WSI(object):
         contour = sha.translate(contour, -x0, -y0)
 
         # Read the corresponding region
-        img = self.get_region_px(x0, y0, x1 - x0, y1 - y0, level, as_type=np.uint8)
+        img = self.get_region_px(x0, y0, x1 - x0, y1 - y0, level, as_type=as_type)
 
         # mask out the points outside the contour
         for i in np.arange(img.shape[0]):
