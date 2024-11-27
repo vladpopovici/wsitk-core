@@ -232,7 +232,7 @@ class WSI(object):
         for lv in range(self.info['n_levels']):
             s = 2.0**lv
             self._pyramid_levels[0, lv] = slide_src.level_dimensions[lv][0]
-            self._pyramid_levels[1, lv] = slide_src.level_dimensions[lv][0]
+            self._pyramid_levels[1, lv] = slide_src.level_dimensions[lv][1]
             self._pyramid_mpp[0, lv] = s * self.info['mpp_x']
             self._pyramid_mpp[1, lv] = s * self.info['mpp_y']
             self._downsample_factors[lv] = self.magnif_converter._magnif_step ** lv
