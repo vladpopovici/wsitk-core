@@ -195,7 +195,7 @@ class WSI(object):
     def __init__(self, path: str | pathlib.Path):
         self._path = pathlib.Path(path) if isinstance(path, str) else path
         self._slide = slide_src = osl.OpenSlide(self.path)
-        slide_meta = slide_src.properties
+        self._original_meta = slide_meta = slide_src.properties
         self.info = {
             'objective_power': float(slide_meta[osl.PROPERTY_NAME_OBJECTIVE_POWER]),
             'width':  slide_src.dimensions[0],
