@@ -253,8 +253,8 @@ class WSI(object):
         """Return the down-sampling factor (relative to level 0) for a given level."""
         if level < 0 or level >= self.level_count:
             return -1
-        ms_x = self._pyramid_levels[0, level] / self.info['mpp_x']
-        ms_y = self._pyramid_levels[1, level] / self.info['mpp_y']
+        ms_x = self._pyramid_levels[0, level] / self._pyramid_levels[0, 0]
+        ms_y = self._pyramid_levels[1, level] / self._pyramid_levels[1, 0]
 
         ms = round(0.5*(ms_x + ms_y))
 
